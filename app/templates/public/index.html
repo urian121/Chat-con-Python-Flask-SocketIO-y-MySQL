@@ -5,19 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename ='assets/css/app.css') }}">
 </head>
-<body>
+<body class="loader">
   
+  <a href="{{ url_for('cerrarSesion') }}" class="nav-link" href="#">Logout</a>
     <h2>Hola Mundo</h2>
-    <form>
-        <input id="myMessage" type="text">
-        <button id="send" onclick="sendForm()">Send</button>
+    
+    <ul id="ul">
+      <li id="resp"></li>
+    </ul>
+
+    <form id="formChat" name="formChat" method="POST">
+        <input type="text" name="mensage" id="mensage">
+        <button type="submit" id="enviar" name="enviar">Send</button>
     </form>
-    <button id="send" onclick="sendForm()">Send</button>
 
    
 <script src="https://cdn.socket.io/4.5.4/socket.io.min.js" integrity="sha384-/KNQL8Nu5gCHLqwqfQjA689Hhoqgi2S84SNUxC3roTe4EhJ9AfLkp8QiQcU8AMzI" crossorigin="anonymous"></script>    
+<script src="{{ url_for('static', filename ='assets/js/app.js') }}"></script>
 <script type="text/javascript" charset="utf-8">
+  const idForm = document.querySelector('#formChat');
+        idForm.addEventListener('submit', getForm);
+
+
     const socket = io();
 
     socket.on('connect', function() {
@@ -25,18 +36,26 @@
       //socket.emit('my event', {data: 'I\'m connected!'});
     });
 
-    function sendForm(){
-      socket.emit('mensageChat', 'Holaaa');
+    function getForm(e){
+      e.preventDefault();
+      let msg = document.querySelector('#mensage').value;
+
+      socket.emit('mensageChat', msg);
+      idForm.reset();
     }
 
-    socket.on('emitirMensaje', function(resp) {
-      console.log('Desde el Clientes ' + resp);
+    socket.on('emitirMensaje', function(data) {
+     let li = document.querySelector('#resp').innerHTML=data;
+      
+      console.log('Desde el Clientes ' + data);
     });
 
 
+    /*
     socket.on('disconnect', function() {
       console.log('Socket Desconectado.!');
-    });
+    }); 
+    */
 
 
   
