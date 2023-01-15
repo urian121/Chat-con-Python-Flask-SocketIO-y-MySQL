@@ -20,7 +20,7 @@ def informacionSesion():
 def verificarLogin(email_cliente='', password_cliente=''):
     email_cliente      = (request.form['email_cliente'])
     password_cliente   = (request.form['password_cliente'])
-
+    
     conexion_MySQLdb = connectionBD() 
     cursor           = conexion_MySQLdb.cursor(dictionary=True)
 
@@ -40,7 +40,7 @@ def verificarLogin(email_cliente='', password_cliente=''):
             session['primer_nombre']    = filaResultado['primer_nombre']
             
             msg = "Proceso completado con éxito."
-            return render_template('public/index.html')                  
+            return render_template('public/home.html')                  
         else:
             #La cuenta no existe o el nombre de usuario/contraseña es incorrecto
             msg = 'Correo electrónico/contraseña incorrectos.'
@@ -74,6 +74,8 @@ def crearCuentaUsuario(primer_nombre ='', email_cliente ='', password_cliente ='
     else:
         # La cuenta no existe y los datos del formulario son válidos,
         nueva_password = generate_password_hash(password_cliente, method='sha256')
+        
+        
         conexion_MySQLdb = connectionBD()
         cursor      = conexion_MySQLdb.cursor(dictionary=True)
         
@@ -87,20 +89,19 @@ def crearCuentaUsuario(primer_nombre ='', email_cliente ='', password_cliente ='
         
         print(cursor.rowcount, "registro insertado")
         print("1 registro insertado, id", cursor.lastrowid)
-    return render_template('public/login/login.html', msg_alerta = msg, tipo_alerta=1)
+    return render_template('public/login/login.html')
 
 
 
 def verificaSesion():
     if 'conectado' in session:
-        return render_template('public/index.html')
+        return render_template('public/home.html')
     else:
         return render_template('public/login/login.html')    
     
     
 def cerrarLogin():
     if request.method == 'GET':
-        print('llegueeeee')
         msgClose = ''
         session.pop('conectado', None)
         session.pop('idUser', None)
@@ -108,4 +109,4 @@ def cerrarLogin():
         msgClose ="Sesión cerrada con éxito"
         return redirect(url_for('inicio'))
     else:
-        return render_template('public/index.html')
+        return render_template('public/home.html')

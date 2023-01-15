@@ -1,0 +1,30 @@
+<div class="chat-header">
+    <div class="chat-header-user">
+        <figure class="avatar">
+            <img src="{{ url_for('static', filename ='assets/images/user-9.png') }}" class="rounded-circle" alt="image">
+        </figure>
+        <div>
+            <h5 class="mt-2 mb-0">Brenda viera</h5>
+            <small class="text-success">escribiendo....</small>
+        </div>
+    </div>
+    <div class="chat-header-action">
+        <ul class="list-inline mb-0 mt-2">
+            <li class="list-inline-item not-mobile"><a href="#" class="bttn-box-round"><i class="ti-microphone"></i></a>
+            </li>
+            <li class="list-inline-item not-mobile"><a href="#" class="bttn-box-round" id="videocall-bttn"><i
+                        class="ti-video-camera"></i></a></li>
+            <li class="list-inline-item d-xl-none d-lg-none"><a href="#" class="bttn-box-round back-chat-div"><i
+                        class="ti-arrow-left"></i></a></li>
+            <li class="list-inline-item">
+                <a href="#" class="bttn-box-round" data-toggle="dropdown"><i class="ti-more-alt"></i></a>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <a href="#" class="dropdown-item profile-detail-bttn">Profile</a>
+                    <a href="#" class="dropdown-item">Add to archived</a>
+                    <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item text-danger">Block</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

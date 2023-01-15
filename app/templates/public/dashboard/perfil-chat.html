@@ -1,0 +1,29 @@
+<div class="chat-header">
+    <div class="chat-header-user">
+        <figure class="avatar">
+            <a href="#" class="profile-detail-bttn">
+                <img src="{{ url_for('static', filename ='assets/images/user-7.png') }}" class="rounded-circle" alt="image">
+            </a>
+        </figure>
+        <div>
+            <h5 class="mt-0 mb-0">Urian Viera</h5>
+            <small class="text-success">dev23@gmail.com</small>
+        </div>
+    </div>
+    <div class="chat-header-action nav-content">
+        <ul class="list-inline mb-1 mt-3">
+            <li class="list-inline-item mr-3">
+                <a href="{{ url_for('cerrarSesion') }}" title="Cerrar Sesión"><i class="ti-lock"></i></a>
+            </li>
+            <li class="list-inline-item mr-3">
+                <a href="#" class="nav-content-bttn" data-tab="settings">
+                    <i class="ti-settings"></i></a>
+                </li>
+            <li class="list-inline-item">
+                <a href="#" class="nav-content-bttn" data-tab="notification">
+                    <span class="circle-icon bg-warning"></span><i class="ti-bell"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

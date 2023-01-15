@@ -11803,7 +11803,7 @@ body .modal-content .modal-footer.add-friend {
 }
 .main-wrapper .right-content .left-sidebar .sidebar form button, .main-wrapper .right-content .right-sidebar .sidebar form button {
   background-color: #2f80ec;
-  min-width: 150px;
+  min-width: 100%;
   border: 0;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;

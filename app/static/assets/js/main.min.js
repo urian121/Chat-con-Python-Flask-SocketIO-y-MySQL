@@ -186,9 +186,10 @@ $(document).ready(function() {
     
 
     
-
+/*
     $('body').addClass('blureffect');
     $('#pagetour').addClass('show').fadeIn();
+    */
 
 
     

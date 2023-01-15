@@ -1,0 +1,35 @@
+<nav class="navigation">
+    <div class="container pl-0 pr-0">
+        <div class="nav-content">
+            <ul>
+                <li class="logo d-none d-xl-block d-lg-block"><a href="#">
+                    <img src="{{ url_for('static', filename ='assets/images/logo.png') }}" alt="logo"></a>
+                </li>
+                <li>
+                    <a href="/" class="active nav-content-bttn" data-tab="chats">
+                        <span class="circle-icon bg-warning"></span><i class="ti-comments"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-content-bttn" data-tab="friends">
+                        <span class="circle-icon bg-danger"></span><i class="ti-user"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-content-bttn" data-tab="favorites">
+                        <i class="ti-heart"></i>
+                    </a>
+                </li>
+                <li class="flex-lg-brackets">
+                    <a href="#" data-tab="archived" class="nav-content-bttn">
+                        <i class="ti-archive"></i>
+                    </a>
+                </li>
+                <li class="d-none d-xl-block d-lg-block night-mode">
+                    <a href="#"><i class="ti-flickr-alt"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

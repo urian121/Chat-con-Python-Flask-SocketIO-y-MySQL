@@ -1,15 +1,20 @@
 from flask import Flask, request, render_template, redirect, url_for, session, jsonify
+import uuid
+
+
 from conexion.conexionBD import * #Conexión para la BD
 from controlles.login import * #Información para toda la gestión login
 from funciones.funciones import * #Mis funciones 
 from routers.routes import *
+
+
 
 #Importando SocketIO desde flask_socketio
 from flask_socketio import SocketIO, emit
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'secret2023*!'
+app.config['SECRET_KEY'] = 'Chat*secret2023*!'
 socketio = SocketIO(app)
 
 
@@ -50,9 +55,13 @@ def chat(msg):
 
 
 
-@app.route('/crear-mi-cuenta', methods=['GET'])
+@app.route('/crear-mi-cuenta', methods=['GET', 'POST'])
 def fromCrearCuentaUsuario():
-    crearCuentaUsuario(request.form['primer_nombre'], request.form['email_cliente'], request.form['password_cliente'])
+    if request.method == 'POST' and 'primer_nombre' in request.form and 'email_cliente' in request.form and 'password_cliente' in request.form:
+        return crearCuentaUsuario(request.form['primer_nombre'], request.form['email_cliente'], request.form['password_cliente'])
+    else:
+        return render_template('public/index.html')
+    
 
 
 
