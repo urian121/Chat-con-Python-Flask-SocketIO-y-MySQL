@@ -2,7 +2,7 @@ from conexion.conexionBD import *
 
 
 
-def listaMensages(idUser):
+def listaMensajes(idUser):
     conexion_MySQLdb = connectionBD() #Hago instancia a mi conexion desde la funcion
     mycursor       = conexion_MySQLdb.cursor(dictionary=True)
     querySQL  = ("SELECT * FROM mensajes WHERE idUser='%s'" % (idUser,))

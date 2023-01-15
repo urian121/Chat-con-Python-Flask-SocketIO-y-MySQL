@@ -4,3 +4,7 @@ window.addEventListener('load', (event) => {
        miBody.classList.remove('loader');
 
 });
+
+window.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelector('#mensaje').focus();
+});

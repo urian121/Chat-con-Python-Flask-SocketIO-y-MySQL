@@ -37,26 +37,30 @@ def login():
 
 
 
-@socketio.on('mensageChat')
-def chat(msg):       
+@socketio.on('mensajeChat')
+def chat(msg, idUser):       
     
     conexion_MySQLdb = connectionBD()
     cursor = conexion_MySQLdb.cursor(dictionary=True)
     
-    sql  = ("INSERT INTO mensajes ( idUser, idPara, mensage) VALUES (%s, %s, %s)")
-    valores     = (1, 2, msg)
+    sql  = ("INSERT INTO mensajes ( idUser, idPara, mensaje) VALUES (%s, %s, %s)")
+    valores     = (idUser, 2, msg)
     cursor.execute(sql, valores)
     conexion_MySQLdb.commit()
     cursor.close()#cerrrando conexion SQL
     conexion_MySQLdb.close() #cerrando conexion de la BD
             
     #print('mensajdasdasde: ' + msg)
-    idUser =1
-    resultMensajes = listaMensages(idUser)
-    print(resultMensajes)
+    resultMensajes = listaMensajes(idUser)
     emit('emitirMensaje', str(resultMensajes), broadcast = True)
 
 
+@app.route('/mensages-chat', methods=['GET','POST'])
+def mensajesChat():
+    listaMsgsChat = request.json['msgs_chat']
+    return render_template('public/dashboard/chat-body.html', miDataMsgs = listaMsgsChat, dataLogin = informacionSesion())
+    
+    
 
 @app.route('/crear-mi-cuenta', methods=['GET', 'POST'])
 def fromCrearCuentaUsuario():

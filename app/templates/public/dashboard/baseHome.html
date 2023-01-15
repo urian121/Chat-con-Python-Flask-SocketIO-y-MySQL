@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block Chat %}{% endblock %}</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename ='assets/imgs/favicon.png') }}">
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename ='assets/css/owl.carousel.min.css') }}" type="text/css"
@@ -18,7 +19,6 @@
     <link rel="stylesheet" href="{{ url_for('static', filename ='assets/css/emoji.css') }}">
 
     <link rel="stylesheet" href="{{ url_for('static', filename ='assets/main.css') }}" type="text/css" media="all">
-    <link rel="stylesheet" href="{{ url_for('static', filename ='assets/css/pace_loader.css') }}">
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -34,10 +34,60 @@
     {% endblock %}
 
 
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js" integrity="sha384-/KNQL8Nu5gCHLqwqfQjA689Hhoqgi2S84SNUxC3roTe4EhJ9AfLkp8QiQcU8AMzI" crossorigin="anonymous"></script>
     <script src="{{ url_for('static', filename ='assets/js/plugin.js') }}"></script>
     <script src="{{ url_for('static', filename ='assets/js/main.min.js') }}"></script>
-    <script src="{{ url_for('static', filename ='assets/js/pace.min.js') }}"></script>
+    
+    <script type="text/javascript" charset="utf-8">
+       
+          const socket = io();
+      
+          const idForm = document.querySelector('#formChat');
+          idForm.addEventListener('submit', getForm);
 
+          socket.on('connect', function() {
+            console.log('Socket Activo.!');
+            //socket.emit('my event', {data: 'I\'m connected!'});
+          });
+      
+          function getForm(e){
+            e.preventDefault();
+            let msg     = document.querySelector('#mensaje').value;
+            let idUser  = document.querySelector('#idUser').value;
+
+            console.log('mi msg* ', msg);
+      
+            socket.emit('mensajeChat', msg, idUser);
+            idForm.reset();
+          }
+      
+          socket.on('emitirMensaje', function(data) {
+            const resp = mostrarMensajes(data);
+            document.querySelector('.messages-content').innerHTML = resp;
+          });
+      
+    function mostrarMensajes(data){
+        $.ajax({
+            url: "{{ url_for('mensajesChat') }}",
+            type: "POST",
+            data: JSON.stringify({'msgs_chat': data}), 
+            contentType: 'application/json;charset=UTF-8',
+            dataType : 'html',
+            cache: false,
+            success: function (resp) {
+                document.querySelector('.messages-content').innerHTML = resp;
+            },
+            error: function () {
+            console.log("error petición ajax  😭");
+            },
+      });
+    }
+          /*
+          socket.on('disconnect', function() {
+            console.log('Socket Desconectado.!');
+          }); 
+          */
+      </script>
 
 </body>
 </html>

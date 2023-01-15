@@ -11131,6 +11131,9 @@ body .modal-content .modal-footer.add-friend {
   }
 }
 
+input:focus {
+  outline: none !important;
+}
 .model-bg {
   position: fixed;
   top: 0;
@@ -11818,7 +11821,7 @@ body .modal-content .modal-footer.add-friend {
   font-family: "Montserrat", sans-serif;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.03);
 }
-.main-wrapper .right-content .left-sidebar .sidebar form :focus, .main-wrapper .right-content .right-sidebar .sidebar form :focus {
+.main-wrapper .right-content .left-sidebar .sidebar form :focus, .main-wrapper .right-content .right-sidebar .sidebar form input:focus {
   outline: none !important;
 }
 .main-wrapper .right-content .left-sidebar .sidebar form ::-webkit-textarea-placeholder, .main-wrapper .right-content .left-sidebar .sidebar form ::-webkit-input-placeholder, .main-wrapper .right-content .right-sidebar .sidebar form ::-webkit-textarea-placeholder, .main-wrapper .right-content .right-sidebar .sidebar form ::-webkit-input-placeholder {
