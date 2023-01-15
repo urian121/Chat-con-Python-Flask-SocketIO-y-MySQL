@@ -19,18 +19,21 @@ socketio = SocketIO(app)
 
 
 
-@app.route('/', methods=['GET','POST'])
+@app.route('/login', methods=['GET','POST'])
 def inicio():
     return verificaSesion()
     
 
 
-@app.route('/inicio', methods=['GET', 'POST'])
+@app.route('/Home', methods=['GET', 'POST'])
 def login():
-    if request.method == 'POST' and 'email_cliente' in request.form and 'password_cliente' in request.form:
-        return verificarLogin(request.form['email_cliente'], request.form['password_cliente'])   
+    if 'conectado' in session:
+        return render_template('public/home.html',  dataLogin = informacionSesion())  
     else:
-        return render_template('public/login/login.html')
+        if request.method == 'POST' and 'email_cliente' in request.form and 'password_cliente' in request.form:
+            return verificarLogin(request.form['email_cliente'], request.form['password_cliente'])   
+        else:
+            return render_template('public/login/login.html')
 
 
 

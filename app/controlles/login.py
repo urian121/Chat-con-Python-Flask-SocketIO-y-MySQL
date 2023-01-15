@@ -2,6 +2,7 @@ from flask import request, render_template, session, redirect, url_for
 from conexion.conexionBD import * 
 
 
+
 import re
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -9,10 +10,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 def informacionSesion():
     informLogin = {
-        "idLogin"             :session['idUser'],
+        "idUser"              :session['idUser'],
         "primer_nombre"       :session['primer_nombre'],
         "email_cliente"       :session['email_cliente'],
-        "estado"          :session['estado']
+        "estado"              :session['estado']
     }
     return informLogin
 
@@ -28,7 +29,8 @@ def verificarLogin(email_cliente='', password_cliente=''):
                         idUser,
                         email_cliente,
                         password_cliente, 
-                        primer_nombre
+                        primer_nombre,
+                        estado
                     FROM users 
                     WHERE email_cliente = %s""", (email_cliente,))
     filaResultado = cursor.fetchone()
@@ -38,9 +40,11 @@ def verificarLogin(email_cliente='', password_cliente=''):
             session['conectado']        = True
             session['idUser']           = filaResultado['idUser']
             session['primer_nombre']    = filaResultado['primer_nombre']
+            session['email_cliente']    = filaResultado['email_cliente']
+            session['estado']           = filaResultado['estado']
             
             msg = "Proceso completado con éxito."
-            return render_template('public/home.html')                  
+            return render_template('public/home.html',  dataLogin = informacionSesion())                  
         else:
             #La cuenta no existe o el nombre de usuario/contraseña es incorrecto
             msg = 'Correo electrónico/contraseña incorrectos.'
@@ -95,7 +99,7 @@ def crearCuentaUsuario(primer_nombre ='', email_cliente ='', password_cliente ='
 
 def verificaSesion():
     if 'conectado' in session:
-        return render_template('public/home.html')
+        return render_template('public/home.html', dataLogin = informacionSesion())
     else:
         return render_template('public/login/login.html')    
     
