@@ -1,4 +1,3 @@
-from flask import render_template, session
 from conexion.conexionBD import * 
 
 
@@ -13,12 +12,5 @@ def listaMensages(idUser):
     conexion_MySQLdb.close() #cerrando conexion de la BD
     return mensajesUser 
 
-
-
-def linkCrearCuentaUsuario():
-    if 'conectado' in session:
-        return render_template('public/index.html')
-    else:
-        return render_template('public/login/crearCuenta.html')
     
     

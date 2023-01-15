@@ -23,10 +23,15 @@
 ``` pip install -r requirements.txt ```
 # en el mismo se encuentran todas las dependecias del proyecto.
 
+# Instalar Modulo OpenCV, para redimensionar imagenes
+``` pip install opencv-contrib-python ```
 # (env)$ deactivate   Para desactivar nuestro entono virtual
  
 # Comando para actualizar pip:
 ``` python -m pip install --upgrade pip ```
 # Link de Referencia 
 ``` https://pypi.org/project/Flask-SocketIO/ ```
-``` https://flask-socketio.readthedocs.io/en/latest/index.html ```
+``` https://flask-socketio.readthedocs.io/en/latest/index.html```
+``` https://pypi.org/project/Pillow/  ```
+
+``` backgroun-color:cadetblue ```

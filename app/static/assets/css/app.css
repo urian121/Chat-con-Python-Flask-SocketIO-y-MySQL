@@ -8,3 +8,23 @@
      background: #cecece;
      opacity: 0.5; 
  }
+
+  input.line:focus,
+     select.line:focus,
+     textarea.line:focus{
+       outline:none !important;
+       outline-offset: 0;
+     }
+     input.line:active{
+       outline:none !important;
+       outline-offset: 0 !important;
+     }
+     input:focus {
+        outline: none;
+        border: none !important;
+    }
+    
+    input:active {
+        outline: none;
+        border: none !important;
+    }

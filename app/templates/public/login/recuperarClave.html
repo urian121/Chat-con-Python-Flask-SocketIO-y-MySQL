@@ -1,0 +1,30 @@
+{% extends 'public/login/baseLogin.html' %}
+{% block title %}Recuperar Clave | Chat {% endblock %}
+
+{% block body %}
+
+<main class="bg-grey">
+    <div class="d-flex align-items-center mx-auto login-form">
+        <div class="container">
+            <div class="card">
+                <div class="card-body p-5">
+                    <form action="" method="POST" autocomplete="off">
+                        <h3 class="title-text mb-4"><b>Recuperar clave</b></h3>
+                        <p class="mb-4">Escribe tu e-mail</p>
+                        <div class="input-group mb-3">
+                              <i class="ti-email"></i>
+                            <input class="form-control form-control-lg" id="password" type="password" placeholder="Email" required="">
+                          </div>
+                          
+                          <button class="btn btn-block btn-lg btn-primary mt-2" type="submit">
+                            <b>Recuperar mi clave</b>
+                        </button>
+                        <p class="mt-4 text-center">Tienes cuenta? <a class="link-primary" href="/">Login</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

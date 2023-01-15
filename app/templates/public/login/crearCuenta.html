@@ -1,28 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-</head>
-<body>
-    
-    <form action="{{ url_for('crearCuenta') }}" method="POST">
-        <div class="form-group">
-            <input type="text" name="primer_nombre"  placeholder="Name" required>
+{% extends 'public/login/baseLogin.html' %}
+{% block title %}Chat | Crear mi Cuenta {% endblock %}
+
+{% block body %}
+
+
+<main class="bg-grey">
+    <div class="d-flex align-items-center mx-auto login-form">
+        <div class="container">
+            <div class="card">
+                <div class="card-body p-5">
+                    <form action="{{ url_for('crearCuenta') }}" method="POST">
+                        <h3 class="title-text mb-5"><b>Crear mi cuenta</b></h3>
+                        <div class="input-group mb-3">
+                            <i class="ti-user"></i>
+                            <input class="form-control form-control-lg" type="text" name="primer_nombre"
+                                placeholder="Primer Nombre">
+                        </div>
+                        <div class="input-group mb-3">
+                            <i class="ti-email"></i>
+                            <input class="form-control form-control-lg" type="email" name="email_cliente"
+                                placeholder="Email" required="true">
+                        </div>
+                        <div class="input-group mb-3">
+                            <i class="ti-lock"></i>
+                            <input class="form-control form-control-lg" type="password" placeholder="Clave"
+                                required="true">
+                        </div>
+
+                        <button class="btn btn-block btn-lg btn-primary mt-2" type="submit">
+                            <b>Crear mi cuenta</b>
+                        </button>
+                        <p class="mt-4 text-center">Tienes cuenta? <a class="link-primary" href="/">Login</a></p>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <input type="email" name="email_cliente" placeholder="Email" required>
-        </div>
-        <div class="form-group">
-            <input type="password" name="password_cliente" placeholder="Password" required>
-        </div>
-        <div class="form-group">
-            <input type="password" name="repetir_password_cliente" placeholder="Password" required>
-        </div>
-        <button class="btn login-form__btn submit w-100">Crear mi cuenta</button>
-    </form>
-    
-</body>
-</html>
+    </div>
+</main>
+
+{% endblock %}

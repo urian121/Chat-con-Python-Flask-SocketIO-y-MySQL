@@ -2,6 +2,7 @@ from flask import Flask, request, render_template, redirect, url_for, session, j
 from conexion.conexionBD import * #Conexión para la BD
 from controlles.login import * #Información para toda la gestión login
 from funciones.funciones import * #Mis funciones 
+from routers.routes import *
 
 #Importando SocketIO desde flask_socketio
 from flask_socketio import SocketIO, emit
@@ -48,6 +49,10 @@ def chat(msg):
 def crearCuentaUsuario():
     return linkCrearCuentaUsuario()
     
+
+@app.route('/recuperar-mi-cuenta', methods=['GET','POST'])
+def recuperarMiCuentaUsuario():
+    return linkrecuperarMiCuentaUsuari()
     
      
 @app.route('/', methods=['GET', 'POST'])

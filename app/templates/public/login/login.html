@@ -1,26 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-<body>
-    
-    <a href="/crear-cuenta-usuario" class="text-primary">
-        Crear cuenta
-    </a>
+{% extends 'public/login/baseLogin.html' %}
+{% block title %}login | Chat {% endblock %}
 
-    <form action="{{ url_for('login') }}"  method="POST" autocomplete="off">
-        <div class="form-group">
-            <input type="email" name="email_cliente" placeholder="Email">
+{% block body %}
+
+<main class="bg-grey">
+    <div class="d-flex align-items-center mx-auto login-form">
+        <div class="container">
+            <div class="card">
+                <div class="card-body p-5">
+                    <form action="{{ url_for('login') }}" method="POST" autocomplete="off">
+                        <h3 class="title-text mb-5"><b>Iniciar Sesión</b></h3>
+                        <div class="input-group mb-3">
+                            <i class="ti-user"></i>
+                            <input class="form-control form-control-lg" type="email" name="email_cliente"
+                                placeholder="Usuario" required="true">
+                        </div>
+                        <div class="input-group mb-3">
+                            <i class="ti-lock"></i>
+                            <input class="form-control form-control-lg" id="password_cliente" name="password_cliente"
+                                type="password" placeholder="Clave" required="true">
+                        </div>
+                        <a class="link-primary" href="{{ url_for('recuperarMiCuentaUsuario') }}">
+                            Recuperar mi clave?</a>
+                        <button class="btn btn-block btn-lg btn-primary mt-2" type="submit">Entrar</button>
+                        <p class="mt-4 text-center">Crear cuenta. <a class="link-primary"
+                                href="{{ url_for('crearCuentaUsuario') }}">Aquí</a></p>
+                    </form>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <input type="password" name="password_cliente" placeholder="Password">
-        </div>
-        <button type="submit">Entrar</button>
-    </form>
-    
-</body>
-</html>
+    </div>
+</main>
+
+{% endblock %}
