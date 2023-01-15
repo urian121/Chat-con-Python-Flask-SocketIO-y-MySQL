@@ -12,19 +12,16 @@
 
 # nstalar Flask-SocketIO: Puedes instalar Flask-SocketIO utilizando el administrador de paquetes de Python pip ejecutando el siguiente comando en tu terminal: pip install flask-socketio
 ``` pip install flask-socketio ```
+
+# Instalar Modulo OpenCV, para redimensionar imagenes
+``` pip install opencv-contrib-python ```
+
 # PASO 5, Lista todos mis paquetes
 ``` pip list  o pip freeze ```
 
 # Crear/Actualizar el fichero requirements.txt:
 ``` pip freeze > requirements.txt ```
 
-# IMPORTANTE, para correr el proyecto solo debes ejecutar el archivo
-# requirements.txt con el comando;
-``` pip install -r requirements.txt ```
-# en el mismo se encuentran todas las dependecias del proyecto.
-
-# Instalar Modulo OpenCV, para redimensionar imagenes
-``` pip install opencv-contrib-python ```
 # (env)$ deactivate   Para desactivar nuestro entono virtual
  
 # Comando para actualizar pip:
@@ -34,4 +31,12 @@
 ``` https://flask-socketio.readthedocs.io/en/latest/index.html```
 ``` https://pypi.org/project/Pillow/  ```
 
-``` backgroun-color:cadetblue ```
+
+
+# IMPORTANTE, para correr el proyecto solo debes ejecutar el archivo
+# requirements.txt con el comando;
+``` pip install -r requirements.txt ```
+# en el mismo se encuentran todas las dependecias del proyecto.
+
+# Nota: cuando valla hacer una actualizacion del archivo requirements.txt debo estar
+# dentro de mi entorno virtual pero no dentro de la carpera app solo en mi entorno.

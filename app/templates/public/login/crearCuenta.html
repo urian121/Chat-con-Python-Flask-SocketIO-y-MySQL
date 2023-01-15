@@ -9,7 +9,7 @@
         <div class="container">
             <div class="card">
                 <div class="card-body p-5">
-                    <form action="{{ url_for('crearCuenta') }}" method="POST">
+                    <form action="{{ url_for('fromCrearCuentaUsuario') }}" method="POST">
                         <h3 class="title-text mb-5"><b>Crear mi cuenta</b></h3>
                         <div class="input-group mb-3">
                             <i class="ti-user"></i>
@@ -30,7 +30,9 @@
                         <button class="btn btn-block btn-lg btn-primary mt-2" type="submit">
                             <b>Crear mi cuenta</b>
                         </button>
-                        <p class="mt-4 text-center">Tienes cuenta? <a class="link-primary" href="/">Login</a></p>
+                        <p class="mt-4 text-center">Tienes cuenta? 
+                            <a class="link-primary" href="/">Login</a>
+                        </p>
                     </form>
                 </div>
             </div>

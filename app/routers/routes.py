@@ -1,15 +1,23 @@
-from flask import render_template, session
+from flask import render_template, session, request
 
 
-def linkCrearCuentaUsuario():
-    if 'conectado' in session:
-        return render_template('public/index.html')
+def viewCrearCuentaUsuario():
+    if request.method == 'GET':
+        if 'conectado' in session:
+            return render_template('public/index.html')
+        else:
+            return render_template('public/login/crearCuenta.html')
     else:
-        return render_template('public/login/crearCuenta.html')
+        return render_template('public/index.html')
+    
+    
    
     
-def linkrecuperarMiCuentaUsuari():
+def linkrecuperarMiCuentaUsuario():
     if 'conectado' in session:
         return render_template('public/index.html')
     else:
         return render_template('public/login/recuperarClave.html')
+   
+    
+    

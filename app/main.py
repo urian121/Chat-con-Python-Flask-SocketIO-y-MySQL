@@ -43,16 +43,21 @@ def chat(msg):
 
 
 
+@app.route('/crear-mi-cuenta', methods=['GET'])
+def fromCrearCuentaUsuario():
+    crearCuentaUsuario(request.form['primer_nombre'], request.form['email_cliente'], request.form['password_cliente'])
 
 
-@app.route('/crear-cuenta-usuario', methods=['GET','POST'])
-def crearCuentaUsuario():
-    return linkCrearCuentaUsuario()
+
+@app.route('/view-crear-mi-cuenta-usuario', methods=['GET'])
+def linkCrearCuentaUsuario():
+    return viewCrearCuentaUsuario()
+    
     
 
-@app.route('/recuperar-mi-cuenta', methods=['GET','POST'])
+@app.route('/view-recuperar-mi-cuenta', methods=['GET','POST'])
 def recuperarMiCuentaUsuario():
-    return linkrecuperarMiCuentaUsuari()
+    return linkrecuperarMiCuentaUsuario()
     
      
 @app.route('/', methods=['GET', 'POST'])
@@ -61,23 +66,11 @@ def login():
         return verificarLogin(request.form['email_cliente'], request.form['password_cliente'])   
     else:
         return render_template('public/login/login.html')
-        
+    
 
 
 
-@app.route('/crear-cuenta', methods=['POST'])
-def crearCuenta():
-    if request.method == 'POST':
-        if 'conectado' in session:
-            return render_template('public/index.html')
-        else:
-            crearCuentaUsuario(request.form['primer_nombre'], request.form['email_cliente'], request.form['password_cliente'], request.form['repetir_password_cliente'])
-    else:
-        return render_template('public/index.html')
-            
-
-
-@app.route('/')
+@app.route('/salir', methods=['GET'])
 def cerrarSesion():
     return cerrarLogin()
 

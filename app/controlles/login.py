@@ -51,11 +51,10 @@ def verificarLogin(email_cliente='', password_cliente=''):
     
  
  
-def crearCuentaUsuario(primer_nombre ='', email_cliente ='', password_cliente ='', repetir_password_cliente =''):
+def crearCuentaUsuario(primer_nombre ='', email_cliente ='', password_cliente =''):
     primer_nombre               = request.form['primer_nombre']
     email_cliente               = request.form['email_cliente']
     password_cliente            = request.form['password_cliente']
-    repetir_password_cliente    = request.form['repetir_password_cliente']
     
     
     # Comprobar si existe una cuenta usando MySQL, con respecto al email
@@ -68,11 +67,9 @@ def crearCuentaUsuario(primer_nombre ='', email_cliente ='', password_cliente ='
     # Si la cuenta existe, muestra los controles de error y validación.
     if filaResultado:
         msg = 'Ya existe la cuenta'
-    elif password_cliente != repetir_password_cliente:
-        msg = 'Keys must be the same!'
     elif not re.match(r'[^@]+@[^@]+\.[^@]+', email_cliente):
         msg = 'Correo no valido!'
-    elif not email_cliente or not password_cliente or not password_cliente or not repetir_password_cliente:
+    elif not email_cliente or not password_cliente or not password_cliente:
         msg = 'Por favor llene todos los campos!'
     else:
         # La cuenta no existe y los datos del formulario son válidos,
@@ -102,9 +99,13 @@ def verificaSesion():
     
     
 def cerrarLogin():
-    msgClose = ''
-    session.pop('conectado', None)
-    session.pop('idUser', None)
-    session.pop('email_cliente', None)
-    msgClose ="Sesión cerrada con éxito"
-    return render_template('public/login/login.html')
+    if request.method == 'GET':
+        print('llegueeeee')
+        msgClose = ''
+        session.pop('conectado', None)
+        session.pop('idUser', None)
+        session.pop('email_cliente', None)
+        msgClose ="Sesión cerrada con éxito"
+        return render_template('public/login/login.html')
+    else:
+        return render_template('public/index.html')

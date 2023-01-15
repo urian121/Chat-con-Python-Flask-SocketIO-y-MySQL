@@ -1,5 +1,8 @@
 /app/__pycache__
-/app/funciones/__pycache__
+/app/funciones/__pycache__/
+/app/controlles/__pycache__/
+/app/routers/__pycache__/
+/app/conexion/__pycache__/
 node_modules
 .env
 env/
