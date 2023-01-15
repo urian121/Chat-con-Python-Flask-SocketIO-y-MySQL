@@ -1,4 +1,4 @@
-from flask import request, render_template, session
+from flask import request, render_template, session, redirect, url_for
 from conexion.conexionBD import * 
 
 
@@ -106,6 +106,6 @@ def cerrarLogin():
         session.pop('idUser', None)
         session.pop('email_cliente', None)
         msgClose ="Sesión cerrada con éxito"
-        return render_template('public/login/login.html')
+        return redirect(url_for('inicio'))
     else:
         return render_template('public/index.html')

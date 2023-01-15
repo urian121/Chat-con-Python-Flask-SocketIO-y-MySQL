@@ -14,11 +14,18 @@ socketio = SocketIO(app)
 
 
 
-
-@app.route('/home', methods=['GET','POST'])
+@app.route('/', methods=['GET','POST'])
 def inicio():
     return verificaSesion()
     
+
+
+@app.route('/inicio', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST' and 'email_cliente' in request.form and 'password_cliente' in request.form:
+        return verificarLogin(request.form['email_cliente'], request.form['password_cliente'])   
+    else:
+        return render_template('public/login/login.html')
 
 
 
@@ -59,15 +66,6 @@ def linkCrearCuentaUsuario():
 def recuperarMiCuentaUsuario():
     return linkrecuperarMiCuentaUsuario()
     
-     
-@app.route('/', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST' and 'email_cliente' in request.form and 'password_cliente' in request.form:
-        return verificarLogin(request.form['email_cliente'], request.form['password_cliente'])   
-    else:
-        return render_template('public/login/login.html')
-    
-
 
 
 @app.route('/salir', methods=['GET'])
