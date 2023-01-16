@@ -1,5 +1,6 @@
 from flask import request, render_template, session, redirect, url_for
 from conexion.conexionBD import * 
+from funciones.funciones import *
 
 
 
@@ -43,12 +44,15 @@ def verificarLogin(email_cliente='', password_cliente=''):
             session['email_cliente']    = filaResultado['email_cliente']
             session['estado']           = filaResultado['estado']
             
-            msg = "Proceso completado con éxito."
-            return render_template('public/home.html',  dataLogin = informacionSesion())                  
+            #Cambio el estado de la Sesión
+            respuesta    = actualizarEstadoSesion(session['idUser'], 1)
+            if(respuesta == 1):
+                msg = "Proceso completado con éxito."
+                return render_template('public/home.html',  dataLogin = informacionSesion(), misContactos = listaDeContactosChats())                  
         else:
             #La cuenta no existe o el nombre de usuario/contraseña es incorrecto
             msg = 'Correo electrónico/contraseña incorrectos.'
-            return render_template('public/login/login.html', msg_alerta = msg, dataLogin = informacionSesion(),tipo_alerta=0)     
+            return render_template('public/login/login.html', msg_alerta = msg)     
     elif request.method == 'POST':
         msg = '¡Por favor rellena el formulario!'
     return render_template('public/login/login.html', msg=msg)
@@ -106,11 +110,16 @@ def verificaSesion():
     
 def cerrarLogin():
     if request.method == 'GET':
-        msgClose = ''
-        session.pop('conectado', None)
-        session.pop('idUser', None)
-        session.pop('email_cliente', None)
-        msgClose ="Sesión cerrada con éxito"
-        return redirect(url_for('inicio'))
+        respuesta = actualizarEstadoSesion(session['idUser'], 0)
+        if(respuesta == 1):
+            msgClose = ''
+            session.pop('conectado', None)
+            session.pop('idUser', None)
+            session.pop('email_cliente', None)
+            msgClose ="Sesión cerrada con éxito"
+            return redirect(url_for('inicio'))
+        else:
+            msg = ''
+            return render_template('public/home.html', msg='No se pudo cerrar la sesión')
     else:
         return render_template('public/home.html')

@@ -1,6 +1,7 @@
 <div class="text-left mb-1 mt-0"><h2 class="title-text"><b>Mis</b> Contactos</h2></div>
 <div class="chat-list-content">
     <ul class="chat-list">
+
         <li class="chat-list-item">
             <figure class="avatar user-online">
                 <img src="{{ url_for('static', filename ='assets/images/user-2.png') }}" alt="image">
@@ -16,155 +17,28 @@
                 </div>
             </div>
         </li>
-        <li class="chat-list-item">
-            <figure class="avatar user-online">
-                <img src="{{ url_for('static', filename ='assets/images/user-6.png') }}" alt="image">
-            </figure>
-            <div class="list-body">
-                <div class="chat-bttn">
-                    <h3 class="mb-0 mt-2">Victor Exrixon</h3>
-                    <p>What's up, how are you?</p>
-                </div>
-                <div class="list-action mt-2 text-right">
-                    <div class="message-count bg-primary">3</div>
-                    <small class="text-primary">03:41 PM</small>
-                </div>
-            </div>
-
-        </li>
-        <li class="chat-list-item">
-            <figure class="avatar user-online">
-                <img src="{{ url_for('static', filename ='assets/images/user-5.png') }}" alt="image">
-            </figure>
-            <div class="list-body">
-                <div class="chat-bttn">
-                    <h3 class="mb-0 mt-2">Surfiya Zakir</h3>
-                    <p>What's up, how are you?</p>
-                </div>
-                <div class="list-action mt-2 text-right">
-                    <div class="message-count bg-primary">1</div>
-                    <small class="text-primary">Yesterday</small>
-                </div>
-            </div>
-
-        </li>
+ 
+    {% if(misContactos) %}
+        {% for contacto in misContactos %}
         <li class="chat-list-item">
             <figure class="avatar user-online">
                 <img src="{{ url_for('static', filename ='assets/images/user-8.png') }}" alt="image">
             </figure>
             <div class="list-body">
                 <div class="chat-bttn">
-                    <h3 class="mb-0 mt-2">John Ive</h3>
+                    <h3 class="mb-0 mt-2">{{ contacto.primer_nombre }}</h3>
                     <p>What's up, how are you?</p>
                 </div>
                 <div class="list-action mt-2 text-right">
                     <small>03:41 PM</small>
                 </div>
             </div>
+        </li>
+        {% endfor %}
 
-        </li>
-        <li class="chat-list-item">
-            <figure class="avatar user-online">
-                <img src="{{ url_for('static', filename ='assets/images/user-9.png') }}" alt="image">
-            </figure>
-            <div class="list-body">
-                <div class="chat-bttn">
-                    <h3 class="mb-0 mt-2">Goria Coast</h3>
-                    <p>What's up, how are you?</p>
-                </div>
-                <div class="list-action mt-2 text-right">
-                    <small>03:41 PM</small>
-                </div>
-            </div>
-        </li>
+        {% else %}
+            <p>Sin Contactos :)</p>
+        {% endif %}
 
-        <li class="chat-list-item">
-            <figure class="avatar user-online">
-                <img src="{{ url_for('static', filename ='assets/images/user-3.png') }}" alt="image">
-            </figure>
-            <div class="list-body">
-                <div class="chat-bttn">
-                    <h3 class="mb-0 mt-2">John Ive</h3>
-                    <p>What's up, how are you?</p>
-                </div>
-                <div class="list-action mt-2 text-right">
-                    <small>03:41 PM</small>
-                </div>
-            </div>
-
-        </li>
-        <li class="chat-list-item">
-            <figure class="avatar user-online">
-                <img src="{{ url_for('static', filename ='assets/images/user-2.png') }}" alt="image">
-            </figure>
-            <div class="list-body">
-                <div class="chat-bttn">
-                    <h3 class="mb-0 mt-2">Goria Coast</h3>
-                    <p>What's up, how are you?</p>
-                </div>
-                <div class="list-action mt-2 text-right">
-                    <small>03:41 PM</small>
-                </div>
-            </div>
-        </li>
-        <li class="chat-list-item">
-            <figure class="avatar user-online">
-                <img src="{{ url_for('static', filename ='assets/images/user-8.png') }}" alt="image">
-            </figure>
-            <div class="list-body">
-                <div class="chat-bttn">
-                    <h3 class="mb-0 mt-2">John Ive</h3>
-                    <p>What's up, how are you?</p>
-                </div>
-                <div class="list-action mt-2 text-right">
-                    <small>03:41 PM</small>
-                </div>
-            </div>
-
-        </li>
-        <li class="chat-list-item">
-            <figure class="avatar user-online">
-                <img src="{{ url_for('static', filename ='assets/images/user-9.png') }}" alt="image">
-            </figure>
-            <div class="list-body">
-                <div class="chat-bttn">
-                    <h3 class="mb-0 mt-2">Goria Coast</h3>
-                    <p>What's up, how are you?</p>
-                </div>
-                <div class="list-action mt-2 text-right">
-                    <small>03:41 PM</small>
-                </div>
-            </div>
-        </li>
-
-        <li class="chat-list-item">
-            <figure class="avatar user-online">
-                <img src="{{ url_for('static', filename ='assets/images/user-3.png') }}" alt="image">
-            </figure>
-            <div class="list-body">
-                <div class="chat-bttn">
-                    <h3 class="mb-0 mt-2">John Ive</h3>
-                    <p>What's up, how are you?</p>
-                </div>
-                <div class="list-action mt-2 text-right">
-                    <small>03:41 PM</small>
-                </div>
-            </div>
-
-        </li>
-        <li class="chat-list-item">
-            <figure class="avatar user-online">
-                <img src="{{ url_for('static', filename ='assets/images/user-2.png') }}" alt="image">
-            </figure>
-            <div class="list-body">
-                <div class="chat-bttn">
-                    <h3 class="mb-0 mt-2">Goria Coast</h3>
-                    <p>What's up, how are you?</p>
-                </div>
-                <div class="list-action mt-2 text-right">
-                    <small>03:41 PM</small>
-                </div>
-            </div>
-        </li>
     </ul>
 </div>

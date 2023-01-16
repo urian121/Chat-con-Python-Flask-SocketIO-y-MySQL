@@ -28,7 +28,7 @@ def inicio():
 @app.route('/Home', methods=['GET', 'POST'])
 def login():
     if 'conectado' in session:
-        return render_template('public/home.html',  dataLogin = informacionSesion())  
+        return render_template('public/home.html',  dataLogin = informacionSesion(), misContactos = listaDeContactosChats())  
     else:
         if request.method == 'POST' and 'email_cliente' in request.form and 'password_cliente' in request.form:
             return verificarLogin(request.form['email_cliente'], request.form['password_cliente'])   
@@ -50,9 +50,8 @@ def chat(msg, idUser):
     cursor.close()#cerrrando conexion SQL
     conexion_MySQLdb.close() #cerrando conexion de la BD
             
-    #print('mensajdasdasde: ' + msg)
     resultMensajes = listaMensajes(idUser)
-    emit('emitirMensaje', str(resultMensajes), broadcast = True)
+    emit('emitirMensaje', {'listaMsgs': resultMensajes, 'nombreUser': session['primer_nombre'] }, broadcast = True)
 
 
 @app.route('/mensages-chat', methods=['GET','POST'])

@@ -54,15 +54,14 @@
             e.preventDefault();
             let msg     = document.querySelector('#mensaje').value;
             let idUser  = document.querySelector('#idUser').value;
-
-            console.log('mi msg* ', msg);
       
             socket.emit('mensajeChat', msg, idUser);
             idForm.reset();
           }
       
+
           socket.on('emitirMensaje', function(data) {
-            const resp = mostrarMensajes(data);
+            const resp = mostrarMensajes(data.listaMsgs);
             document.querySelector('.messages-content').innerHTML = resp;
           });
       
