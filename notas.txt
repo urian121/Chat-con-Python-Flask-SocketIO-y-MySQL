@@ -1,0 +1,65 @@
+@mod.route('/flujo',methods=('GET','POST'))
+def flujo():
+    print(request.args)
+    param1= request.args.get("flujo")
+
+    print(request.args)
+    print(request.form)
+    print(request.data)
+
+    param1= request.form["flujo"]
+
+    como usar 
+    https://pypi.org/project/Flask-Cors/
+    https://www.appsloveworld.com/coding/python3x/481/axios-post-is-not-parsed-correctly-in-python-flask
+
+
+
+
+
+const enviarSolicitud =  axios({
+          method: "POST",
+          url: "{{ url_for('mensajesChat') }}",
+          data: {data},
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          },
+      })
+        .then((res) => {
+          document.querySelector('.messages-content').innerHTML = resp;
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log('Error en el post');
+        })
+        .finally(function () {
+          console.log('Operacion terminada');
+        });
+
+        
+    @app.route('/mensages-chat', methods=['GET','POST'])
+    def mensajesChat():
+    print(request.data)
+        
+    #listaMsgsChat = request.json['msgs_chat']
+    listaMsgsChat = request.data
+    return render_template('public/dashboard/chat-body.html', miDataMsgs = listaMsgsChat, dataLogin = informacionSesion())
+    
+
+
+
+
+    SCROLL
+
+       // $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+               // $(".messages-content").animate({ scrollTop: $(this).prop("scrollHeight")}, 1000);
+                //var scrolltoh = $('.messages-content')[0].scrollHeight;
+               // $('.messages-content').scrollTop(scrolltoh);
+
+               
+            var element = document.querySelector('.chat-body');
+            element.scrollTop = element.scrollHeight;
+               
+  
+               // $(".chat-body").animate({ scrollTop: $('.chat-body')[0].scrollHeight}, 500);

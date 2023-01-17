@@ -11019,6 +11019,9 @@ body.rtl .main-wrapper .right-content .left-sidebar .sidebar .chat-list-content 
   margin-right: auto;
   margin-left: 0;
 }
+.chat-list-item:hover{
+  opacity: 0.7;
+}
 @media (max-width: 1399.98px) {
   body.rtl .main-wrapper .right-content .right-sidebar {
     left: 0;

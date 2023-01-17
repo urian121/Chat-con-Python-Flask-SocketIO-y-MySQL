@@ -50,7 +50,7 @@ def chat(msg, idUser):
     cursor.close()#cerrrando conexion SQL
     conexion_MySQLdb.close() #cerrando conexion de la BD
             
-    resultMensajes = listaMensajes(idUser)
+    resultMensajes = listaMensajes(idUser, session['idUser'])
     emit('emitirMensaje', {'listaMsgs': resultMensajes, 'nombreUser': session['primer_nombre'] }, broadcast = True)
 
 
@@ -60,7 +60,15 @@ def mensajesChat():
     return render_template('public/dashboard/chat-body.html', miDataMsgs = listaMsgsChat, dataLogin = informacionSesion())
     
     
-
+@app.route('/seleccionar-usuario', methods=['GET','POST'])
+def seleccionarUsuario():
+    idUser = request.json['idUser']
+    resultMsgs = listaMensajes(idUser, session['idUser'])
+    return render_template('public/dashboard/chat-body.html', msgsUsuarioSeleccionado = resultMsgs, dataLogin = informacionSesion())
+    
+    
+    
+    
 @app.route('/crear-mi-cuenta', methods=['GET', 'POST'])
 def fromCrearCuentaUsuario():
     if request.method == 'POST' and 'primer_nombre' in request.form and 'email_cliente' in request.form and 'password_cliente' in request.form:

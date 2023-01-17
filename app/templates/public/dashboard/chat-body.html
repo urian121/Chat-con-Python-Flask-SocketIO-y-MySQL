@@ -1,8 +1,8 @@
 
-<div class="chat-body" style="overflow: hidden;outline: none;">
+<div class="chat-body" style="overflow: hidden;outline: none; opacity: 1; transition: opacity .5s linear;">
     <div class="messages-content">
     
-   {{ miDataMsgs }}   
+   <!-- {{ miDataMsgs }} -->
     {% if(miDataMsgs) %}
         {% for msj in miDataMsgs %}
             <div class="message-item">
@@ -33,7 +33,42 @@
         </div>
 
     {% else %}
-    <p>Sin Mensajes :)</p>
+        <p>Sin Mensajes :)</p>
+    {% endif %}
+
+
+    <!--Para cuando seleccionan un usuario en especifico -->
+    {% if(msgsUsuarioSeleccionado) %}
+        {% for msj in msgsUsuarioSeleccionado %}
+            <div class="message-item">
+                <div class="message-user">
+                    <figure class="avatar">
+                        <img src="{{ url_for('static', filename ='assets/images/user-9.png') }}" alt="image">
+                    </figure>
+                    <div>
+                        <h5>Byrom Guittet </h5>
+                        <div class="time">01:35 PM</div>
+                    </div>
+                </div>
+                <div class="message-wrap">{{ msj.mensaje}} 😃</div>
+            </div>
+        {% endfor %}
+
+        <div class="message-item outgoing-message">
+            <div class="message-user">
+                <figure class="avatar">
+                    <img src="{{ url_for('static', filename ='assets/images/user-1.png') }}" alt="image">
+                </figure>
+                <div>
+                    <h5>Byrom Guittet</h5>
+                    <div class="time">01:35 PM<i class="ti-double-check text-info"></i></div>
+                </div>
+            </div>
+            <div class="message-wrap">I want those files for you. I want you to send 1 PDF and 1 image file.</div>
+        </div>
+
+    {% else %}
+        <p>Sin Mensajes :)</p>
     {% endif %}
 
     </div>

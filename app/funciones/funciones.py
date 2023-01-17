@@ -3,10 +3,12 @@ from datetime import date
 from datetime import datetime
 
 
-def listaMensajes(idUser):
+def listaMensajes(idUser, idSesion):
     conexion_MySQLdb = connectionBD() #Hago instancia a mi conexion desde la funcion
     mycursor       = conexion_MySQLdb.cursor(dictionary=True)
-    querySQL  = ("SELECT * FROM mensajes WHERE idUser='%s'" % (idUser,))
+    #$Msjs =("SELECT * FROM msjs WHERE (user_id ='" . $idConectado . "' AND to_id='" .$IdUser. "') OR (user_id='" .$IdUser. "' AND to_id='" . $idConectado . "') ORDER BY id ASC");
+    querySQL  = ("SELECT * FROM mensajes WHERE (idUser='%s' AND idPara='%s') OR (idUser='%s' AND idPara='%s') ORDER BY idMensaje ASC" % (idSesion, idUser, idUser, idSesion,))
+    print(querySQL)
     mycursor.execute(querySQL)
     mensajesUser = mycursor.fetchall() 
     mycursor.close() #cerrrando conexion SQL

@@ -17,11 +17,11 @@
                 </div>
             </div>
         </li>
- 
+
     {% if(misContactos) %}
         {% for contacto in misContactos %}
         <li class="chat-list-item">
-            <figure class="avatar user-online">
+            <figure class="avatar user-online" onclick="seleccionarUsuario('{{ contacto.idUser }}');">
                 <img src="{{ url_for('static', filename ='assets/images/user-8.png') }}" alt="image">
             </figure>
             <div class="list-body">
@@ -33,7 +33,7 @@
                     <small>03:41 PM</small>
                 </div>
             </div>
-        </li>
+        </li> 
         {% endfor %}
 
         {% else %}
