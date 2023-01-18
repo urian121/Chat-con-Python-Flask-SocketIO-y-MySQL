@@ -41,8 +41,8 @@
         const socket = io();
 
         function seleccionarUsuario(idUser){
-           // console.log(`Usuario seleccionado ${idUser}`);
-           validarIdUsuarioSeleccionado();
+          console.log(`Usuario seleccionado ${idUser}`);
+
             $.ajax({
               url: "{{ url_for('seleccionarUsuario') }}",
               type: "POST",
@@ -68,20 +68,17 @@
           function sendForm(e){
             e.preventDefault();
 
-            //localStorage.setItem("usuario", JSON.stringify(mi_objeto));
-            idUserSeleccionado = localStorage.getItem("idUser");
-            console.log(idUserSeleccionado);
+            let msg            = document.querySelector('#mensaje').value;
+            let idSeleccionado = document.querySelector('#idSeleccionado').value;
+            console.log('idSeleccionado ' + idSeleccionado);
 
-            let msg     = document.querySelector('#mensaje').value;
-            let idUser = validarIdUsuarioSeleccionado();
-            //let idUser  = document.querySelector('#idUser').value;
-      
-            socket.emit('mensajeChat', msg, idUser);
+            socket.emit('mensajeChat', msg, idSeleccionado);
             idForm.reset();
           }
       
 
           socket.on('emitirMensaje', function(data) {
+            console.log('msjs ' + data.listaMsgs);
             const resp = mostrarMensajes(data.listaMsgs);
             document.querySelector('.messages-content').innerHTML = resp;
           });
@@ -102,28 +99,6 @@
             },
       });
     }
-
-    const validarIdUsuarioSeleccionado = ()=>{
-      //Para eliminar todas las variables guardadas en el localStorage
-      localStorage.clear(); 
-
-      //Pregunto Existe el idUser en mi LocalStorage?
-      if("idUser" in localStorage){
-       let idUser = localStorage.getItem('idUser'); //Consulto el idUser desde mi localStorage
-       return idUser;
-      }else{
-       //Si no existe, lo almaceno en mi LocalStorage.
-      localStorage.setItem('idUser', idUser); 
-      let idUser = localStorage.getItem('idUser'); //Consulto el idUser almacenado en mi localStorage
-        return idUser;
-     }
-    }
-          /*
-          socket.on('disconnect', function() {
-            console.log('Socket Desconectado.!');
-          }); 
-          */
-
   </script>
 
 </body>

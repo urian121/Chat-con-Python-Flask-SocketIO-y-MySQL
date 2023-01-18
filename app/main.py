@@ -38,33 +38,35 @@ def login():
 
 
 @socketio.on('mensajeChat')
-def chat(msg, idUser):       
+def chat(msg, idSeleccionado):
+    idUserSesion       = session['idUser']       
     
     conexion_MySQLdb = connectionBD()
     cursor = conexion_MySQLdb.cursor(dictionary=True)
     
     sql  = ("INSERT INTO mensajes ( idUser, idPara, mensaje) VALUES (%s, %s, %s)")
-    valores     = (idUser, 2, msg)
+    valores     = (idUserSesion, idSeleccionado, msg)
     cursor.execute(sql, valores)
     conexion_MySQLdb.commit()
     cursor.close()#cerrrando conexion SQL
     conexion_MySQLdb.close() #cerrando conexion de la BD
             
-    resultMensajes = listaMensajes(idUser, session['idUser'])
+    resultMensajes = listaMensajes(idSeleccionado, idUserSesion)
     emit('emitirMensaje', {'listaMsgs': resultMensajes, 'nombreUser': session['primer_nombre'] }, broadcast = True)
 
 
 @app.route('/mensages-chat', methods=['GET','POST'])
 def mensajesChat():
     listaMsgsChat = request.json['msgs_chat']
-    return render_template('public/dashboard/chat-body.html', miDataMsgs = listaMsgsChat, dataLogin = informacionSesion())
+    return render_template('public/dashboard/chat-body.html', msgsUsuarioSeleccionado = listaMsgsChat, dataLogin = informacionSesion())
     
     
 @app.route('/seleccionar-usuario', methods=['GET','POST'])
 def seleccionarUsuario():
-    idUser = request.json['idUser']
-    resultMsgs = listaMensajes(idUser, session['idUser'])
-    return render_template('public/dashboard/chat-body.html', msgsUsuarioSeleccionado = resultMsgs, dataLogin = informacionSesion())
+    idUserSeleccionado = request.json['idUser']
+    idUserSesion       = session['idUser']
+    resultMsgs = listaMensajes(idUserSeleccionado, idUserSesion)
+    return render_template('public/dashboard/chat-body.html', idSeleccionado = idUserSeleccionado, msgsUsuarioSeleccionado = resultMsgs, dataLogin = informacionSesion())
     
     
     
