@@ -40,3 +40,27 @@
 
 # Nota: cuando valla hacer una actualizacion del archivo requirements.txt debo estar
 # dentro de mi entorno virtual pero no dentro de la carpera app solo en mi entorno.
+
+# chat-list-content.html
+{
+    onclick="seleccionarUsuario('{{ contacto.idUser }}');"
+}
+->BaeHome.html ->JavaScript ->ajax ->seleccionarUsuario
+->main.py ->recibo el id del usuario seleccionado y lo envio a la funcion listaMensajes(idUserSeleccionado, idUserSesion) enviando tambien el id del usuario en session.
+
+->La funcion (idUserSeleccionado, idUserSesion) que esta en el archivo de funciones,
+  consulta todos los chats tanto enviados como recibidos por ambas partes retornando los mismos.
+
+->Desade esta funcion seleccionarUsuario que esta en main.py, envio chat-body.html el id que fue seleccionado, los mensajes entre ambos y los datos de la session.
+
+-> En el archivo chat-body.html muestro todos los chats entre el usuario seleccionado con        respecto al usuario en sesion.
+
+-> Luego como he enviado el idSeleccionado al archivo  chat-body.html con JavaScript desde el baseHome.html selecciono dicho id cuando envio el formulario, con el fin de determinar para quien es el mensajes.
+
+-> Envio el mensaje al socket 'mensajeChat' donde inserto el mensaje en BD y consulto la funcion
+listaMensajes(idSeleccionado, idUserSesion) la mismo como se comento antes, consulta todos los chats entre ambas partes, es decir mostra los mensajes enviados entre ambas partes.
+
+
+-> mostrarMensajes(data) es una funcion que envia el mensaje a la vista de 'mensajesChat' pero primero va ha mensajesChat() que esta en main.py
+
+-> funciones.py ->def listaMensajes(idUser, idSesion):

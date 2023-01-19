@@ -39,7 +39,10 @@
     
     <script type="text/javascript" charset="utf-8">
         const socket = io();
-
+      /*
+      Recibo el Id del usuario el cual fue seleccionado
+      para chatear o ver conversaciones
+      */
         function seleccionarUsuario(idUser){
           console.log(`Usuario seleccionado ${idUser}`);
 
@@ -56,7 +59,9 @@
             });
           }
 
-      
+      /*
+      Enviando formulario de mensajes con JavaScript
+      */
           const idForm = document.querySelector('#formChat');
           idForm.addEventListener('submit', sendForm);
 
@@ -79,15 +84,18 @@
 
           socket.on('emitirMensaje', function(data) {
             console.log('msjs ' + data.listaMsgs);
-            const resp = mostrarMensajes(data.listaMsgs);
+            console.log('msjs ' + data.nombreUser);
+
+            let nombreUser = data.nombreUser;
+            const resp = mostrarMensajes(data.listaMsgs, nombreUser);
             document.querySelector('.messages-content').innerHTML = resp;
           });
       
-    function mostrarMensajes(data){
+    function mostrarMensajes(data, nombreUser){
         $.ajax({
             url: "{{ url_for('mensajesChat') }}",
             type: "POST",
-            data: JSON.stringify({'msgs_chat': data}), 
+            data: JSON.stringify({'msgs_chat': data, 'nombreUser':nombreUser}), 
             contentType: 'application/json;charset=UTF-8',
             dataType : 'html',
             cache: false,
